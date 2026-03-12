@@ -43,6 +43,7 @@ cd BPI-R4PRO-8X-OPENWRT-V24.10.0-Master-Devel-build-on-arm64
 
 # Persistent cache/output directories
 mkdir -p bin dl
+```
 
 ### 2. Start the Docker container
 
@@ -109,6 +110,14 @@ Available step names:
 `apply-configs`, `feeds`, `patch-golang`, `defconfig`, `tools`, `toolchain`, `linux-firmware`, `menuconfig`, `final-build`
 
 Each run writes a timestamped log file to `logs/build-YYYYmmdd-HHMMSS.log`.
+
+## ⏱ Build Time Reference
+
+- Host: Apple Silicon `M1 Max`
+- Docker VM allocation: `8 CPU cores`, `16 GB RAM`
+- `bash /home/builduser/scripts/build.sh -m auto`: approximately **1 hour**
+
+Build time varies with package selection, cache warm-up state (`dl/`, `bin/`), and network speed.
 
 ## ⚠️Important Note for BPI-R4 Pro (10G SFP+)
 
