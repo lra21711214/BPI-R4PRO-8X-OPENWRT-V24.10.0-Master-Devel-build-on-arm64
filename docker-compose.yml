@@ -1,0 +1,14 @@
+services:
+  bpi-builder:
+    build: .
+    container_name: bpi_r4_pro_build_env
+    tty: true
+    stdin_open: true
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - ./bin:/home/builduser/bpi/bin
+      - ./scripts:/home/builduser/scripts
+      - ./configs:/home/builduser/configs
+      - ./dl:/home/builduser/bpi/dl
+    working_dir: /home/builduser/bpi

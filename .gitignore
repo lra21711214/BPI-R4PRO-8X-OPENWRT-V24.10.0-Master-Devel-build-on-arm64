@@ -1,0 +1,16 @@
+# OpenWrt Build Artifacts & Caches
+bin/
+dl/
+.config
+logs/
+
+# OS generated files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor directories and files
+.idea
+.vscode
+*.swp
+*.swo
