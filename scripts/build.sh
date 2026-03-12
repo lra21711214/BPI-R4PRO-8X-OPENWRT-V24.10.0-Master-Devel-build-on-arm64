@@ -302,7 +302,7 @@ step_final_build() {
     echo "--- Step: final-build ---"
     make -j1 V=s
     echo "--- All Done! ---"
-    echo "Build completed. Please check the bin/ folder on your host machine."
+    echo "Build completed. Please check bin/targets/mediatek/filogic/ on your host machine."
 }
 
 run_step() {

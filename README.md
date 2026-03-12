@@ -110,6 +110,7 @@ Available step names:
 `apply-configs`, `feeds`, `patch-golang`, `defconfig`, `tools`, `toolchain`, `linux-firmware`, `menuconfig`, `final-build`
 
 Each run writes a timestamped log file to `logs/build-YYYYmmdd-HHMMSS.log`.
+If the build completes successfully, firmware images are generated in `bin/targets/mediatek/filogic/`.
 
 ## ⏱ Build Time Reference
 
