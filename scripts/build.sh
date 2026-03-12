@@ -300,7 +300,7 @@ step_menuconfig() {
 
 step_final_build() {
     echo "--- Step: final-build ---"
-    make -j"$JOBS" V=s
+    make -j1 V=s
     echo "--- All Done! ---"
     echo "Build completed. Please check the bin/ folder on your host machine."
 }
@@ -357,7 +357,7 @@ print_prepare_next_steps() {
     echo "  3. make tools/compile -j$JOBS V=s"
     echo "  4. make toolchain/compile -j$JOBS V=s"
     echo "  5. make package/firmware/linux-firmware/compile -j$JOBS V=s"
-    echo "  6. make -j$JOBS V=s"
+    echo "  6. make -j1 V=s"
     echo "======================================================="
 }
 
