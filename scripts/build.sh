@@ -126,6 +126,43 @@ ensure_openwrt_root() {
     fi
 }
 
+check_architecture() {
+    local arch
+    arch=$(uname -m)
+    if [ "$arch" != "aarch64" ] && [ "$arch" != "arm64" ]; then
+        echo "======================================================="
+        echo "WARNING: This environment is specifically tailored for arm64 (Apple Silicon)."
+        echo "Current architecture detected: $arch"
+        echo ""
+        echo "For x86_64/amd64 hosts, it is recommended to use the original project:"
+        echo "https://github.com/BPI-SINOVOIP/BPI-R4PRO-8X-OPENWRT-V24.10.0-Master-Devel"
+        echo "======================================================="
+        echo -n "Press Enter to continue anyway, or Ctrl+C to abort..."
+        read -r
+        echo ""
+    fi
+}
+
+check_disk_space() {
+    local min_space_gb=30
+    local avail_blocks
+    if avail_blocks=$(df -kP . | awk 'NR==2 {print $4}') && [ -n "$avail_blocks" ]; then
+        local avail_gb=$((avail_blocks / 1024 / 1024))
+        if [ "$avail_gb" -lt "$min_space_gb" ]; then
+            echo "======================================================="
+            echo "WARNING: Only ${avail_gb}GB of free disk space available."
+            echo "OpenWrt build typically requires at least ${min_space_gb}GB."
+            echo "Building may fail due to insufficient space."
+            echo "======================================================="
+            echo -n "Press Enter to continue anyway, or Ctrl+C to abort..."
+            read -r
+            echo ""
+        else
+            echo "Disk space check passed: ${avail_gb}GB available."
+        fi
+    fi
+}
+
 validate_jobs() {
     if [ -n "$JOBS" ]; then
         if ! [[ "$JOBS" =~ ^[1-9][0-9]*$ ]]; then
@@ -455,6 +492,8 @@ parse_args() {
 main() {
     parse_args "$@"
     ensure_openwrt_root
+    check_architecture
+    check_disk_space
     require_command make
     require_command tee
     if [ -z "$JOBS" ]; then
