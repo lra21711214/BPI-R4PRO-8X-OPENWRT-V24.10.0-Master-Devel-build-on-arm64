@@ -38,7 +38,7 @@ Building OpenWrt on arm64 macOS typically fails due to x86-based Go bootstrap de
 ### 1. Clone the repository and prepare host paths
 
 ```bash
-git clone <YOUR_GITHUB_REPO_URL>
+git clone https://github.com/lra21711214/BPI-R4PRO-8X-OPENWRT-V24.10.0-Master-Devel-build-on-arm64.git
 cd BPI-R4PRO-8X-OPENWRT-V24.10.0-Master-Devel-build-on-arm64
 
 # Persistent cache/output directories
